@@ -28,6 +28,7 @@ function App() {
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter text-white ">
       {/* how do you create a Routes is a important thing  */}
       {/* bdhiya  */}
+      {/* hello  */}
       <Navbar/>
 
       <Routes>
