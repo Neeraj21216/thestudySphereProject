@@ -10,11 +10,13 @@ const {auth,isAdmin,isInstructor,isStudent}=require("../middleware/auth");
 //category
 const {createCategory,showAllCategory,categoryPageDetails} = require('../controller/Category');
 
+const {createRating,getAverageRating,getAllRating}=require('../controller/RatingAndReview')
+
 
 //******************************************************************************************************* */
 //                      Routes for Course                    
 //****************************************************************************************************** */
- router.post("/createCourse",auth,isInstructor,createCourse);
+router.post("/createCourse",auth,isInstructor,createCourse);
 router.get("/showAllCourses",showAllCourses);
 router.post("/showCourseDetail",showCourseDetail);
 router.put("/editCourseDetails",auth,isInstructor,editCourseDetails);
@@ -28,7 +30,7 @@ router.get("/getEnrolledCourses",auth,isStudent,getEnrolledCourses);
 
    
 //******************************************************************************************************* */
-//                      Routes for Categories                    
+//                      Routes for Categories    by(Admin);                 
 //****************************************************************************************************** */
 router.post("/createCategory",auth,isAdmin,createCategory);
 router.get("/showAllCategory",showAllCategory);
@@ -60,7 +62,13 @@ router.delete("/deleteSubSection",auth,isInstructor,deleteSubSection);
 router.put("/updateSubSection",auth,isInstructor,updateSubSection);
 
 
+//******************************************************************************************************* */
+//                      Routes for ratings                    
+//****************************************************************************************************** */
 
+router.post('/createRating', auth, isStudent, createRating);
+router.get('/getAverageRating', getAverageRating);
+router.get('/getReviews', getAllRating);
 
 module.exports=router;
 

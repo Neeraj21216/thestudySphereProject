@@ -5,7 +5,7 @@ const { default: mongoose } = require("mongoose");
 exports.createRating=async (req,res) => {
     try {
         //get user id
-        const userId=req.user.id;
+        const userId=req.user.id;   
         //fetchdata from req body
         const {rating,review,courseId}=req.body;
 

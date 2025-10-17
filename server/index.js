@@ -22,12 +22,24 @@ database.dbConnect();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+const allowedOrigins = [
+    // "http://localhost:3000",  // Local frontend (for development)
+    "https://study-sphere-rust.vercel.app"  // Latest Vercel frontend link
+];
+
 app.use(
     cors({
-        origin: '*', // Frontend's URL
-        credentials: true, // Allow cookies and credentials
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+        credentials: true,
     })
 );
+
 app.use(
     fileUpload({
         useTempFiles: true,

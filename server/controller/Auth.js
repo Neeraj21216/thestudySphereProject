@@ -4,9 +4,11 @@ const otpGenerator=require("otp-generator");
 const bcrypt = require('bcrypt');
 const Profile=require("../model/Profile");
 const jwt=require("jsonwebtoken");
+const mailsender=require("../utils/mailSender");
+
 require("dotenv").config();
 
-  
+
    
 
 ///send otp 
@@ -240,5 +242,78 @@ exports.login=async (req,res) => {
 //change Password
 //how would you change the password 
 exports.changePassword=async (req,res) => {
-    
+    try {
+        
+        const userDetails = await User.findById(req.user._id);
+
+        const {oldPassword, newPassword} = req.body;
+
+        if(await bcrypt(oldPassword, userDetails.password)){
+
+            const encryptPassword = await bcrypt.hash(newPassword, 10);
+
+            const updateUserDetails = await User.findByIdAndUpdate(req.user._id,
+                {password: encryptPassword},
+                {new : true}
+            )
+
+            try {
+                
+                const emailResponse = await mailSender(
+                    updateUserDetails.email,
+                    `Password updated successfully for ${updateUserDetails.firstName}  ${updateUserDetails.lastName}`,
+
+                )
+                
+            }
+            catch (error) {
+                res.status(400).json({
+                    success: false,
+                    message: "Error in sending mail after updating the password"
+                })
+            }
+
+            res.status(200).json({
+                success: true,
+                message: "Password updated successfully"
+            })
+
+        }
+
+        else {
+            return res.status(401).json({
+                success: false,
+                message: "Password donot match"
+            })
+        }
+
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            message: "Error occured while updating the password"
+        })
+    }
+}
+
+exports.contactEmail = async (req,res) => {
+
+    try {
+        console.log("g", req.body);
+        const {Email, Message, FirstName , LastName} = req.body;
+                
+        const emailResponse = await mailSender(
+            Email,
+            `My Name is ${FirstName} ${LastName}`,
+            Message,
+        )
+        
+    }
+    catch (error) {
+        res.status(400).json({
+            success: false,
+            message: "Error in sending mail "
+        })
+    }
 }
