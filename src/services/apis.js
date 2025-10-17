@@ -1,10 +1,17 @@
-const REACT_APP_BASE_URL="http://localhost:4000/api/v1"
+const REACT_APP_BASE_URL="https://study-notion-backend-ar34.onrender.com/api/v1"
 
 const BASE_URL=REACT_APP_BASE_URL;
 
 export const categories={
     CATEGORIES_API:BASE_URL+"/course/showAllCategory"
 }
+//PROFILE ENDPOINTS
+export const profileEndpoints = {
+    GET_USER_DETAILS_API: BASE_URL + "/profile/getUserDetails",
+    GET_USER_ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
+    GET_INSTRUCTOR_DATA_API: BASE_URL + "/profile/instructorDashboard",
+}
+
 
 export const endpoints = {
     SENDOTP_API: BASE_URL + "/auth/sendOtp",
@@ -41,15 +48,23 @@ export const courseEndpoints={
     UPDATE_SUB_SECTION_API:BASE_URL+"/course/updateSubSection",
     DELETE_SUB_SECTION_API:BASE_URL+"/course/deleteSubSection",
     GET_ALL_INSTRUCTOR_COURSES_API:BASE_URL+"/course/getInstructorCourses",
+    //rating 
+    CREATE_RATING_API: BASE_URL + "/course/createRating",
 
 
 
 
+}
+export const ratingsEndpoints = {
+    REVIEWS_DETAILS_API: BASE_URL + "/course/getReviews",
 }
 export const catalogData = {
     CATALOGPAGEDATA_API: BASE_URL + "/course/getCategoryPageDetails",
 }
 
+export const contactusEndpoint = {
+    CONTACT_US_API: BASE_URL + "/auth/contactEmail",
+}
 //student Endpointts
 export const studentEnpoints={
     COURSE_PAYMENT_API:BASE_URL+"/payment/capturePayment",
