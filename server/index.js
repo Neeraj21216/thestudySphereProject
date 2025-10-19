@@ -37,6 +37,8 @@ app.use(
             }
         },
         credentials: true,
+        // credential true h qk cookies or token to be communicated between frontedn and backend
+        
     })
 );
 

@@ -7,7 +7,7 @@ const EditProfile=()=>{
 
     const {token}=useSelector((state)=>state.auth);
     const dispatch=useDispatch();
-    console.log("hello ");
+    //console.log("hello ");
     const {register,handleSubmit
         ,formState:{
             errors,
