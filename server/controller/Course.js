@@ -368,3 +368,86 @@ exports.getEnrolledCourses=async(req,res)=>{
     }
 }
 
+
+
+exports.getFullCourseDetails = async (req, res) => {
+    try {
+      console.log("10");  
+      console.log("Request Params:", req.params); // Debugging
+
+      const { courseId } = req.params;
+      const userId = req.user.id
+      // console.log("c",courseId, "f",userId);
+      const courseDetails = await Course.findOne({
+        _id: courseId,
+      })
+        .populate({
+          path: "instructor",
+          populate: {
+            path: "additionalDetails",
+          },
+        })
+        .populate("category")
+        .populate("ratingAndReviews")
+        .populate({
+          path: "courseContent",
+          populate: {
+            path: "subSection",
+          },
+        })
+        .exec()
+
+        console.log(1,"c",courseDetails,8);
+  
+      let courseProgressCount = await CourseProgress.findOne({
+        courseId: courseId,
+        userId: userId,
+      })
+  
+      console.log("courseProgressCount : ", courseProgressCount)
+
+      console.log(2);
+  
+      if (!courseDetails) {
+        return res.status(400).json({
+          success: false,
+          message: `Could not find course with id: ${courseId}`,
+        })
+      }
+  
+      // if (courseDetails.status === "Draft") {
+      //   return res.status(403).json({
+      //     success: false,
+      //     message: `Accessing a draft course is forbidden`,
+      //   });
+      // }
+
+      console.log(3,courseDetails);
+  
+      let totalDurationInSeconds = 0
+      courseDetails.courseContent.forEach((content) => {
+        content.subSection.forEach((subSection) => {
+          const timeDurationInSeconds = parseInt(subSection.timeDuration)
+          totalDurationInSeconds += timeDurationInSeconds
+        })
+      })
+  
+      const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+  
+      return res.status(200).json({
+        success: true,
+        data: {
+          courseDetails,
+          totalDuration,
+          completedVideos: courseProgressCount?.completedVideos
+            ? courseProgressCount?.completedVideos
+            : [],
+        },
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      })
+    }
+  }

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useParams } from 'react-router-dom';
-import { getFullDetailsOfCourse } from '../services/operations/courseDetailsAPI';
+import { getFullDetailsOfCourse } from '../services/operation/CourseDetailAPI';
 import { setCompletedLectures, setCourseSectionData, setEntireCourseData, setTotalNoOfLectures } from '../slices/viewCourseSlice';
 import VideoDetailsSidebar from '../components/core/viewcourse/videoDetailsSidebar';
 import CourseReviewModal from '../components/core/viewcourse/courseRevieeModal';
@@ -20,7 +20,7 @@ const ViewCourse = () => {
     useEffect( () => {
 
         const setCourseSpecificDetails = async() => {
-            const courseData = await getCourseDetailData(courseId);
+            const courseData = await getFullDetailsOfCourse(courseId);
             // console.log(1,"c",courseData,4);
 
             dispatch(setCourseSectionData(courseData.courseDetails.courseContent));
