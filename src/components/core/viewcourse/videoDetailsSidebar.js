@@ -12,6 +12,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
 
     const navigate = useNavigate();
     const {sectionId, subSectionId} = useParams();
+    // something ned to be chan
 
     const {
         courseSectionData,

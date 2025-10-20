@@ -6,6 +6,8 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { handleDeleteCourse, fetchInstructorCourses } from "../../../../services/operation/CourseDetailAPI";
 import { COURSE_STATUS } from "../../../../utilis/constants";
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
+import { editCourseDetails } from "../../../../../server/controller/Course";
+import EditCourse from "../editCourse";
 
 const CourseTable = ({ courses, setCourses }) => {
     const { token } = useSelector((state) => state.auth);
@@ -64,7 +66,7 @@ const CourseTable = ({ courses, setCourses }) => {
                                 <Td>{course?.price}</Td>
                                 <Td>
                                     <button>
-                                    <MdEdit onClick={() => { /* navigate to edit things */ }} />
+                                    <MdEdit onClick={() => {<EditCourse/>}} />
 
                                     </button>
                                             <button

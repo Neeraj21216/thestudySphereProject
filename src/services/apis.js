@@ -71,3 +71,9 @@ export const studentEnpoints={
     COURSE_VERIFY_API:BASE_URL+"/payment/verifyPayment",
     SEND_PAYMENT_SUCCESS_EMAIL_API:BASE_URL+"/payment/sendPaymentEmail",
 }
+export const settingsEndpoints = {
+    UPDATE_DISPLAY_PICTURE_API: BASE_URL + "/profile/updateDisplayPicture",
+    UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
+    CHANGE_PASSWORD_API: BASE_URL + "/auth/changePassword",
+    DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
+}
