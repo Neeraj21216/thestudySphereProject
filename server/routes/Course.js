@@ -22,8 +22,6 @@ router.post("/showCourseDetail",showCourseDetail);
 router.put("/editCourseDetails",auth,isInstructor,editCourseDetails);
 router.get("/getInstructorCourses",auth,isInstructor,getInstructorCourses);
 router.post("/deleteCourses",auth,isInstructor,deleteCourses);
-router.post('/updateCourseProgress', auth, isStudent, updateCourseProgress);
-
 router.get("/getEnrolledCourses",auth,isStudent,getEnrolledCourses);
 router.get('/getFullCourseDetails/:courseId', auth, getFullCourseDetails);
 

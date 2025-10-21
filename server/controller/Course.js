@@ -6,6 +6,7 @@ const {uploadImageTocloudinary}=require("../utils/imageUplaoder");
 const { json } = require("express");
 const Section=require("../model/Section");
 const SubSection = require("../model/SubSection");
+const CourseProgress=require("../model/CourseProgress");
 exports.createCourse=async (req,res) => {
     try {
         //fetch data  
