@@ -6,6 +6,7 @@
     import Boxpart from "../components/core/about/LearningSection"
     import CTNButtons from  "../components/core/HomePage/CTNButtons"
     import HighlighText from "../components/core/HomePage/HighlighText"
+    import Contact from "./contact"
 
 
 //
@@ -142,7 +143,7 @@ const About=()=>{
             {/* form part  */}
            </div>
 
-
+        <Contact />  
 
 
 
