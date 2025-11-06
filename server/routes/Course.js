@@ -12,7 +12,7 @@ const {createCategory,showAllCategory,categoryPageDetails} = require('../control
 
 const {createRating,getAverageRating,getAllRating}=require('../controller/RatingAndReview')
 
-
+const {updateCourseProgress}=require("../controller/CourseProgress");
 //******************************************************************************************************* */
 //                      Routes for Course                    
 //****************************************************************************************************** */
@@ -36,6 +36,8 @@ router.get('/getFullCourseDetails/:courseId', auth, getFullCourseDetails);
 router.post("/createCategory",auth,isAdmin,createCategory);
 router.get("/showAllCategory",showAllCategory);
 router.post("/getCategoryPageDetails",categoryPageDetails);
+router.post('/updateCourseProgress', auth, isStudent, updateCourseProgress);
+
 
 
 
@@ -61,6 +63,7 @@ const {createSubSection,deleteSubSection,updateSubSection}=require("../controlle
 router.post("/createSubSection",auth,isInstructor,createSubSection);
 router.delete("/deleteSubSection",auth,isInstructor,deleteSubSection);
 router.put("/updateSubSection",auth,isInstructor,updateSubSection);
+
 
 
 //******************************************************************************************************* */
