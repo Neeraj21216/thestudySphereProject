@@ -74,7 +74,7 @@ function App() {
                 <Route path="dashboard/add-course" element={< AddCourse/>}/>
                 <Route path="dashboard/instructor" element={<Instructor />}/>
                 <Route path="dashboard/my-courses" element={<MyCourse ></MyCourse>}/>
-                
+                {/* it may be giving error */}
 
                 </>
                 
