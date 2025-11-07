@@ -67,7 +67,6 @@ export default function Instructor() {
                         </div>
                     )}
                     {/* Total Statistics */}
-                    {/* ---  */}
                     <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
                         <p className="text-lg font-bold text-richblack-5">Statistics</p>
                         <div className="mt-4 space-y-4">
